@@ -1,5 +1,5 @@
-FROM node:apine
+FROM node:alpine
 WORKDIR /usr/src/app
-COPY . . 
+COPY . .
 RUN npm install
 EXPOSE 5173

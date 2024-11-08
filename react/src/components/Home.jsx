@@ -1,5 +1,5 @@
 const Home = ()=>{
-    return <h1>Home, Hello World</h1>
+    return <h1>HOME, Hello World</h1>;
 };
 
-export default Home; //為了能夠讓別人呼叫使用
+export default Home;

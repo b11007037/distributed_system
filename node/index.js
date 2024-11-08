@@ -11,7 +11,7 @@ const client = new Client({
     port:5432,
 });
 
-// client.connect();
+client.connect();
 
 const createTable = async ()=>{
     await client.query(`CREATE TABLE IF NOT EXISTS users
@@ -19,7 +19,7 @@ const createTable = async ()=>{
     email VARCHAR (255) UNIQUE NOT NULL, age INT NOT NULL);`)
 };
 
-// createTable();
+createTable();
 
 const app = express();
 app.use(express.json());
@@ -34,7 +34,7 @@ app.get('/api/all', async (req, res) => {
         const response = await client.query(`SELECT * FROM users`);
         if(response){
             res.status(200).send(response.rows);
-        }
+        } 
     }
     catch (error){
         res.status(500).send('Error');
@@ -42,12 +42,12 @@ app.get('/api/all', async (req, res) => {
     }
 });
 
-app.get('/api/from', async (req, res) =>{
+app.get('/api/form', async (req, res) =>{
     try{
         const name = req.body.name;
         const email = req.body.email;
         const age = req.body.age;
-        const response = await client.query(`INSTERT INTO user(name, email, age) VALUES('${name}','${email}','${age}')`);
+        const response = await client.query(`INSERT INTO users(name, email, age) VALUES('${name}','${email}','${age}')`);
         if (response){
             res.status(200).send(req.body);
         }
@@ -58,4 +58,4 @@ app.get('/api/from', async (req, res) =>{
     }
 });
 
-app.listen(3000, () => {console.log('App is running on port 3000')});
+app.listen(3000, () => console.log('App is running on port 3000'));

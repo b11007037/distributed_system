@@ -34,7 +34,7 @@ services:
     command: npm run dev
 
   nginx:
-    build: 
+    build:
       context: nginx
     container_name: nginx
     restart: always
@@ -45,10 +45,10 @@ services:
       - node-network
     depends_on:
       - node
-      - react
+      - react    
 
   db:
-    imgae: postgres
+    image: postgres
     container_name: db
     restart: always
     tty: true
@@ -63,7 +63,6 @@ services:
     networks:
       - node-network
 
-
 networks:
   node-network:
-  driver: bridge
+    driver: bridge
